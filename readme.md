@@ -1,6 +1,6 @@
-#Data Structures library for Python
+# Data Structures library for Python
 
-##Included Data Structures
+## Included Data Structures
 
 1. Linked list
 2. Stacks
