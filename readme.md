@@ -26,6 +26,7 @@ l.add(4)
 Linked list created will be
 
 1->2->3->4
+
 1<-2<-3-<4
 
 - Getting value from linked list
@@ -44,6 +45,7 @@ l.remove(3)
 First occurrence of 3 will be removed.
 Linked list is now
 1->2->4
+
 1<-2<-4
 
 - Iterating over linked list
