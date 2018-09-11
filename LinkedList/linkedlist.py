@@ -10,6 +10,9 @@ class Node():
         if isinstance(obj,Node):
             return self.val == obj.val
 
+'''
+Implementation of a linked list
+'''
 class LinkedList():
 
     #initialise an empty linked lsit
