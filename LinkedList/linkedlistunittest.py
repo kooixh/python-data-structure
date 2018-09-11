@@ -1,5 +1,6 @@
 import unittest
 from linkedlist import LinkedList
+from linkedlistalgs import mergesort
 
 #unit tests to test all the implementation of the linked list
 class TestLinkedList(unittest.TestCase):
@@ -102,6 +103,24 @@ class TestLinkedList(unittest.TestCase):
         l.add(4)
 
         self.assertEqual([1,2,3,4],l.toarray())
+
+    def test_sort(self):
+        l = LinkedList()
+        l.add(28)
+        l.add(7)
+        l.add(13)
+        l.add(4)
+
+        l.head = mergesort(l.head)
+        n = l.head.next
+        lastval = l.head.val
+
+        #the next value is always greater than the last
+        while(n != None):
+            self.assertEqual(n.val>=lastval,True)
+            lastval = n.val
+            n = n.next
+
 
 if __name__ == '__main__':
     unittest.main()

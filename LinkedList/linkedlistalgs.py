@@ -1,4 +1,5 @@
 from linkedlist import LinkedList
+from linkedlist import Node
 
 #reversing a linked list
 def reverse(ll):
@@ -14,26 +15,25 @@ def reverse(ll):
         cur.prev = next
         cur = next
 
+#get the middle node of a linked list
+def getmiddle(h):
 
-#split a linked list from l to r
-def split(ll,l,r):
-    a = LinkedList()
+    if h == None:
+        return h
+    i = h #slow
+    j = h #fast
 
-    if l>ll.length:
-        raise IndexError('Index out of bounds')
 
-    h = ll.head
-    #head to lth element
-    for i in range(l):
-        h = h.next
+    while j.next != None and j.next.next !=None:
+        i = i.next
+        j = j.next.next
 
-    for i in range (r-l):
-        a.add(h.val)
-        h = h.next
-    return a
+    return i
+
 
 #merge 2 sorted linked list head
 def merge(a,b):
+    temp = None
     if a == None:
         return b
     if b == None:
@@ -42,43 +42,46 @@ def merge(a,b):
     if a.val<=b.val:
         temp = a
         temp.next = merge(a.next,b)
+        temp.next.prev = temp
+        temp.prev =None
     else:
         temp = b
         temp.next = merge(a,b.next)
+        temp.next.prev = temp
+        temp.prev=None
     return temp
 
+#merget sort a linked list given the head element
 def mergesort(n):
-    #TODO implement
+    if n == None or n.next == None:
+        return n
 
-    '''
-        n is none or n.next is None
-            return None
+    m = getmiddle(n)
+    r = m.next
+    m.next = None
 
-        m = get middle
-        n=mergesort(n)
-        m=mergesort(m)
+    n = mergesort(n)
+    r = mergesort(r)
 
-        merge(n,m)
-    '''
-
-
-
+    return merge(n,r)
 
 
 if __name__ == '__main__':
 
     ll = LinkedList()
 
-    ll.add(1)
-    ll.add(2)
+    ll.add(10)
+    ll.add(42)
     ll.add(3)
-    ll.add(4)
-    ll.add(5)
-    ll.add(6)
-    ll.add(7)
+    ll.add(48)
+    ll.add(15)
+    ll.add(26)
+    ll.add(71)
     ll.add(8)
+    ll.add(34)
 
-    reverse(ll)
+
+    ll.head = mergesort(ll.head)
 
     i = ll.iterator()
 
